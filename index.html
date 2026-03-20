@@ -2,223 +2,347 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Golla Bala Ganesh | AI & ML Engineer</title>
+  <title>Golla Bala Ganesh | AI Engineering</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
-    /* 1. GLOBAL & RESET */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* -----------------------------------------------------------
+       1. GLOBAL RESET & BASE STYLES
+       Sets the foundation for a clean, full-screen portfolio.
+    ----------------------------------------------------------- */
+    * { margin: 0; padding: 0; box-spacing: border-box; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', sans-serif; background: #020617; color: #fff; overflow-x: hidden; }
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #000; color: #fff; overflow-x: hidden; }
 
-    /* 2. BACKGROUND VIDEO (Full Screen) */
-    .video-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
-    .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: -1; }
+    /* -----------------------------------------------------------
+       2. FULL-SCREEN BACKGROUND (matches photo exactly)
+       This places the sci-fi grid video behind everything.
+    ----------------------------------------------------------- */
+    .background-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; filter: brightness(0.7); }
 
-    /* 3. NAVIGATION */
-    .navbar { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 5%; z-index: 1000; background: rgba(0,0,0,0.3); backdrop-filter: blur(10px); }
-    .logo { color: #00FFCC; font-size: 1.5rem; font-weight: bold; }
-    .navbar ul { list-style: none; display: flex; gap: 2rem; }
-    .navbar ul li a { text-decoration: none; color: #fff; font-size: 0.9rem; transition: 0.3s; }
+    /* Optional: Use this <img> tag if you don't have a background.mp4 video file */
+    /*.background-overlay { content: url('background-image.jpg'); position: fixed; ... (same styles) ... }*/
+
+    /* -----------------------------------------------------------
+       3. NAVIGATION BAR (Clean, photo style)
+    ----------------------------------------------------------- */
+    .navbar { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+    .navbar .logo { color: #00FFCC; font-size: 24px; font-weight: bold; letter-spacing: 1px; }
+    .navbar ul { list-style: none; display: flex; gap: 20px; }
+    .navbar ul li a { text-decoration: none; color: #fff; font-size: 15px; transition: color 0.3s ease; font-weight: 500; }
     .navbar ul li a:hover { color: #00FFCC; }
 
-    /* 4. HERO SECTION (Matching your Image) */
-    .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
-    .hero-card { width: 85%; max-width: 900px; padding: 3rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; backdrop-filter: blur(12px); }
+    /* -----------------------------------------------------------
+       4. HERO SECTION (matches photo exactly)
+    ----------------------------------------------------------- */
+    .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 10; }
     
-    /* Borderless Profile Pic with Thin Green Ring */
-    .profile-pic { width: 150px; height: 150px; border-radius: 50%; border: 3px solid #00FFCC; margin-bottom: 1.5rem; object-fit: cover; box-shadow: 0 0 15px rgba(0, 255, 204, 0.3); }
+    /* Profile Image: Borderless and Thin Green Ring */
+    .profile-img-container { position: relative; width: 150px; height: 150px; margin-bottom: 20px; }
+    .profile-img-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid #00FFCC; box-shadow: 0 0 10px rgba(0, 255, 204, 0.4); }
 
-    .hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
-    .hero h3 { color: #00FFCC; font-size: 1.2rem; margin-bottom: 1.5rem; font-weight: 500; }
+    /* Typography */
+    .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 5px; color: #fff; text-transform: none; }
+    .hero h3 { color: #00FFCC; font-size: 1.2rem; font-weight: 600; text-transform: none; margin-bottom: 15px; }
     
-    .scrolling-text { color: rgba(255,255,255,0.8); line-height: 1.6; max-width: 600px; margin: 0 auto 2rem; }
+    /* Text Overlay & Buttons */
+    .hero .scrolling-text { max-width: 600px; color: rgba(255,255,255,0.8); margin-bottom: 25px; line-height: 1.6; }
+    .hero-buttons { display: flex; gap: 15px; margin-top: 15px; }
+
+    /* Button Styles (photo match) */
+    .btn { text-decoration: none; padding: 12px 25px; border-radius: 25px; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; }
+    .btn.primary { background: #00FFCC; color: #000; border: 2px solid #00FFCC; }
+    .btn.primary:hover { background: transparent; color: #00FFCC; box-shadow: 0 0 10px rgba(0, 255, 204, 0.3); }
+    .btn.outline { background: transparent; color: #fff; border: 2px solid #fff; }
+    .btn.outline:hover { background: #fff; color: #000; box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+
+    /* -----------------------------------------------------------
+       5. MAIN SECTIONS & COMPONENTS (Refined layout)
+    ----------------------------------------------------------- */
+    .section { padding: 80px 10%; position: relative; z-index: 5; background: rgba(0,0,0,0.8); } /* Darker overlay for content readability */
+    .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 50px; color: #fff; font-weight: 700; }
+    .section-title i { color: #00FFCC; margin-right: 15px; }
+
+    /* Glass Effect (for content panels) */
+    .glass-panel { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); backdrop-filter: blur(5px); transition: all 0.3s ease; }
+    .glass-panel:hover { border-color: rgba(0, 255, 204, 0.3); }
+
+    /* GRID LAYOUTS (Education, Experience, Certificates) */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+    .card-grid .item { display: flex; flex-direction: column; position: relative; }
+    .card-grid .item h3 { color: #fff; font-size: 1.2rem; margin-bottom: 5px; }
+    .card-grid .item .role { color: #00FFCC; font-weight: 600; margin-bottom: 5px; }
+    .card-grid .item span { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 10px; }
+    .card-grid .item ul { color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.6; margin-left: 20px; flex-grow: 1; }
     
-    .hero-buttons { display: flex; gap: 1rem; justify-content: center; }
-    .btn { text-decoration: none; padding: 0.8rem 2rem; border-radius: 50px; font-weight: 600; display: inline-flex; align-items: center; gap: 10px; transition: 0.3s; }
-    .btn.primary { background: #00FFCC; color: #000; }
-    .btn.primary:hover { background: #00d1a7; transform: translateY(-3px); }
-    .btn.outline { border: 1px solid #00FFCC; color: #fff; }
-    .btn.outline:hover { background: rgba(0, 255, 204, 0.1); transform: translateY(-3px); }
+    /* LINK SECTIONS (for Experience and Certificates Cards) */
+    .item-links { margin-top: auto; padding-top: 15px; text-align: right; }
+    .item-links a { text-decoration: none; color: #00FFCC; font-size: 0.9rem; font-weight: 500; }
+    .item-links a:hover { text-decoration: underline; }
 
-    /* 5. SECTIONS */
-    .section { padding: 100px 10%; background: rgba(2, 6, 23, 0.8); position: relative; }
-    h2 { font-size: 2.5rem; margin-bottom: 3rem; text-align: center; }
-    h2 i { color: #00FFCC; margin-right: 15px; }
+    /* PROJECTS GRID (Unified, photo style) */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .project-card { display: flex; align-items: center; justify-content: space-between; }
+    .project-card h3 { color: #fff; font-size: 1.1rem; }
+    .project-card p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+    .project-card .code-link { font-size: 1.5rem; color: #00FFCC; transition: all 0.3s ease; }
+    .project-card .code-link:hover { color: #fff; transform: scale(1.1); }
 
-    /* GRID STYLES */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-    .card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); padding: 2rem; border-radius: 15px; transition: 0.3s; position: relative; }
-    .card:hover { border-color: #00FFCC; transform: translateY(-5px); }
-
-    .link-icon { position: absolute; top: 20px; right: 20px; color: #00FFCC; font-size: 1.2rem; text-decoration: none; }
-    
     /* SKILLS MARQUEE */
-    .skill-marquee { overflow: hidden; white-space: nowrap; padding: 2rem 0; background: rgba(0,0,0,0.2); }
-    .skill-track { display: inline-flex; gap: 3rem; animation: marquee 20s linear infinite; }
-    .skill { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; }
-    .skill i { color: #00FFCC; }
+    .skill-marquee { width: 100%; overflow: hidden; padding: 20px 0; background: rgba(0,0,0,0.5); }
+    .skill-track { display: flex; gap: 40px; animation: scroll-marquee 20s linear infinite; width: max-content; }
+    .skill { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 1.1rem; }
+    .skill i { color: #00FFCC; font-size: 1.4rem; }
+    
+    /* CONTACT SECTION (Unified) */
+    .contact-center { display: flex; justify-content: center; gap: 30px; font-size: 2rem; margin-top: 30px; }
+    .contact-center a { color: #fff; transition: color 0.3s ease; }
+    .contact-center a:hover { color: #00FFCC; }
+    
+    /* FOOTER */
+    footer { padding: 20px; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
 
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    /* Animation */
+    @keyframes scroll-marquee { 
+      0% { transform: translateX(0); } 
+      100% { transform: translateX(-50%); } 
+    }
 
-    /* CONTACT */
-    .contact-center { display: flex; justify-content: center; gap: 2rem; font-size: 2.5rem; }
-    .contact-center a { color: #fff; transition: 0.3s; }
-    .contact-center a:hover { color: #00FFCC; transform: scale(1.1); }
+    /* Simple Fade-In on Page Load */
+    .hero { animation: fadeIn 1s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-    footer { text-align: center; padding: 2rem; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
-
-    /* ANIMATIONS */
-    .fade-up { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-    .fade-up.show { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 
 <body>
 
-<video autoplay muted loop playsinline class="video-bg">
+<video autoplay muted loop playsinline class="background-overlay">
   <source src="background.mp4" type="video/mp4">
 </video>
-<div class="overlay"></div>
 
 <nav class="navbar">
   <div class="logo">Portfolio</div>
   <ul>
     <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
-    <li><a href="#certifications">Certificates</a></li>
+    <li><a href="#certificates">Certificates</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
 <section class="hero">
-  <div class="hero-card">
-    <img src="profile.png" class="profile-pic" alt="Golla Bala Ganesh">
-    <h1>Golla Bala Ganesh</h1>
-    <h3>Aspiring AI Engineering</h3>
+  <div class="profile-img-container">
+    <img src="profile.png" alt="Golla Bala Ganesh">
+  </div>
 
-    <div class="scrolling-text">
-      Enthusiastic AI/ML fresher with hands-on experience in TensorFlow, Scikit-learn, NLP, and Deep Learning. Focused on building predictive models and real-world AI solutions.
-    </div>
+  <h1>Golla Bala Ganesh</h1>
+  <h3>Aspiring AI Engineering</h3>
 
-    <div class="hero-buttons">
-      <a href="#projects" class="btn primary">
-        <i class="fa-solid fa-code"></i> View Projects
-      </a>
-      <a href="resume.pdf" class="btn outline" download>
-        <i class="fa-solid fa-download"></i> Resume
-      </a>
-    </div>
+  <div class="scrolling-text">
+    Enthusiastic and detail-oriented AI/ML fresher proficient in TensorFlow, Scikit-learn, NLP, and Deep Learning, with strong experience building real-world solutions through projects and internships.
+  </div>
+
+  <div class="hero-buttons">
+    <a href="#projects" class="btn primary">
+      <i class="fa-solid fa-code"></i> View Projects
+    </a>
+    <a href="resume.pdf" class="btn outline" target="_blank">
+      <i class="fa-solid fa-download"></i> Resume
+    </a>
   </div>
 </section>
 
-<section id="about" class="section fade-up">
-  <h2><i class="fa-solid fa-user-astronaut"></i> About Me</h2>
-  <div class="card" style="max-width: 800px; margin: 0 auto; text-align: center;">
-    <p style="line-height: 1.8;">
-      B.Tech Computer Science graduate from VIT (2025). Passionate about Artificial Intelligence and Machine Learning. Skilled in Python, Deep Learning, and data visualization. I enjoy uncovering patterns in data and building models that solve complex problems.
+<section id="about" class="section">
+  <h2 class="section-title"><i class="fa-solid fa-user-astronaut"></i> About Me</h2>
+  <div class="glass-panel">
+    <p style="text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.8; color: rgba(255,255,255,0.9);">
+      Aspiring AI Engineering Professional based in Visakhapatnam, Andhra Pradesh. Specializing in Python, TensorFlow, and Scikit-learn, I have a passion for transforming data into predictive solutions. I have hands-on experience in regression, classification, and NLP, applied across diverse domains from concrete strength prediction to financial fraud detection. With strong problem-solving and collaboration skills, I am eager to apply machine learning to impactful, real-world solutions and grow within an innovative environment.
     </p>
   </div>
 </section>
 
-<section id="experience" class="section fade-up">
-  <h2><i class="fa-solid fa-briefcase"></i> Experience</h2>
-  <div class="grid">
-    <div class="card">
-      <a href="#" class="link-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+<section id="education" class="section">
+  <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
+  <div class="card-grid">
+    <div class="glass-panel item">
+      <h3>Vellore Institute of Technology</h3>
+      <p class="role">B.Tech – Computer Science & Engineering</p>
+      <span>2021 – 2025 | CGPA: 7.28</span>
+    </div>
+    <div class="glass-panel item">
+      <h3>Narayana Junior College</h3>
+      <p class="role">Intermediate Education</p>
+      <span>2019 – 2021 | 90.4%</span>
+    </div>
+    <div class="glass-panel item">
+      <h3>Dr. K.K.R’s Gowtham School</h3>
+      <p class="role">Secondary Education</p>
+      <span>2018 – 2019 | CGPA: 7.8</span>
+    </div>
+  </div>
+</section>
+
+<section id="experience" class="section">
+  <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Experience</h2>
+  <div class="card-grid">
+    <div class="glass-panel item">
       <h3>Rubixe</h3>
-      <p style="color:#00FFCC;">Data Scientist Intern</p>
-      <p style="font-size: 0.8rem; margin-bottom: 1rem;">Sep 2025 – Jan 2026</p>
-      <ul style="font-size: 0.9rem; margin-left: 15px;">
-        <li>Worked on POC and client-based projects.</li>
-        <li>Applied ML techniques to solve business problems.</li>
+      <p class="role">Data Scientist Intern</p>
+      <span>Sep 2025 – Jan 2026</span>
+      <ul>
+        <li>Worked on Proof of Concept (POC) projects in the Data Science domain.</li>
+        <li>Applied machine learning and data analysis techniques to solve real-world problems.</li>
+        <li>Assisted in data preprocessing, model building, and result interpretation.</li>
       </ul>
+      <div class="item-links">
+        <a href="PASTE RUBIXE LINK HERE" target="_blank"><i class="fa-solid fa-link"></i> View Confirmation</a>
+      </div>
     </div>
-    <div class="card">
-      <a href="#" class="link-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+    
+    <div class="glass-panel item">
       <h3>Smart Bridge</h3>
-      <p style="color:#00FFCC;">Externship</p>
-      <p style="font-size: 0.8rem; margin-bottom: 1rem;">Aug 2023 – Nov 2023</p>
-      <ul style="font-size: 0.9rem; margin-left: 15px;">
-        <li>Built predictive models using Decision Trees.</li>
-        <li>Conducted large-scale data analysis.</li>
+      <p class="role">Externship</p>
+      <span>Aug 2023 – Nov 2023</span>
+      <ul>
+        <li>Analyzed large datasets using Python to extract insights and identify patterns.</li>
+        <li>Built predictive models using Linear Regression and Decision Trees.</li>
+        <li>Applied feature engineering and data preprocessing to improve performance.</li>
       </ul>
+      <div class="item-links">
+        <a href="PASTE SMART BRIDGE LINK HERE" target="_blank"><i class="fa-solid fa-link"></i> View Certificate</a>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="projects" class="section fade-up">
-  <h2><i class="fa-solid fa-code"></i> Projects</h2>
-  <div class="grid">
-    <div class="card">
-      <a href="https://github.com/Balaganesh1122/Credit-Card-Fraud-Detection" target="_blank" class="link-icon"><i class="fa-brands fa-github"></i></a>
-      <h3>Fraud Detection</h3>
-      <p style="font-size: 0.9rem; margin-top: 10px;">Deep Learning (ANN, LSTM) | 94% Accuracy</p>
+<section id="projects" class="section">
+  <h2 class="section-title"><i class="fa-solid fa-code-branch"></i> Projects</h2>
+  <div class="projects-grid">
+    
+    <div class="glass-panel project-card item">
+      <div>
+        <h3>FIFA 20 Player Analysis</h3>
+        <p>Classification Model | 89% Accuracy</p>
+      </div>
+      <a href="PASTE FIFA PROJECT LINK HERE" target="_blank" class="code-link">
+        <i class="fa-brands fa-github"></i>
+      </a>
     </div>
-    <div class="card">
-      <a href="https://github.com/Balaganesh1122/PortugeseBank-Project" target="_blank" class="link-icon"><i class="fa-brands fa-github"></i></a>
-      <h3>Bank Marketing</h3>
-      <p style="font-size: 0.9rem; margin-top: 10px;">Random Forest | 91% Accuracy</p>
+
+    <div class="glass-panel project-card item">
+      <div>
+        <h3>Credit Card Fraud Detection</h3>
+        <p>Deep Learning (ANN, LSTM) | 94% Accuracy</p>
+      </div>
+      <a href="PASTE CREDIT CARD PROJECT LINK HERE" target="_blank" class="code-link">
+        <i class="fa-brands fa-github"></i>
+      </a>
     </div>
-    <div class="card">
-      <a href="https://github.com/Balaganesh1122/Fifa20" target="_blank" class="link-icon"><i class="fa-brands fa-github"></i></a>
-      <h3>FIFA Analysis</h3>
-      <p style="font-size: 0.9rem; margin-top: 10px;">Classification | 89% Accuracy</p>
+
+    <div class="glass-panel project-card item">
+      <div>
+        <h3>Portuguese Bank Marketing</h3>
+        <p>Random Forest | 91% Accuracy</p>
+      </div>
+      <a href="PASTE PORTUGUESE BANK PROJECT LINK HERE" target="_blank" class="code-link">
+        <i class="fa-brands fa-github"></i>
+      </a>
+    </div>
+
+    <div class="glass-panel project-card item">
+      <div>
+        <h3>Concrete Compressive Strength</h3>
+        <p>Regression | 90% R² Score</p>
+      </div>
+      <a href="PASTE CONCRETE PROJECT LINK HERE" target="_blank" class="code-link">
+        <i class="fa-brands fa-github"></i>
+      </a>
+    </div>
+
+    <div class="glass-panel project-card item">
+      <div>
+        <h3>NBA Shot Selection</h3>
+        <p>Feature Engineering | 87% Accuracy</p>
+      </div>
+      <a href="PASTE NBA PROJECT LINK HERE" target="_blank" class="code-link">
+        <i class="fa-brands fa-github"></i>
+      </a>
     </div>
   </div>
 </section>
 
-<section id="skills" class="skill-marquee">
-  <div class="skill-track">
-    <div class="skill"><i class="fa-brands fa-python"></i> Python</div>
-    <div class="skill"><i class="fa-solid fa-brain"></i> TensorFlow</div>
-    <div class="skill"><i class="fa-solid fa-robot"></i> Scikit-learn</div>
-    <div class="skill"><i class="fa-solid fa-database"></i> SQL</div>
-    <div class="skill"><i class="fa-solid fa-chart-pie"></i> Power BI</div>
-    <div class="skill"><i class="fa-brands fa-github"></i> GitHub</div>
-    <div class="skill"><i class="fa-brands fa-python"></i> Python</div>
-    <div class="skill"><i class="fa-solid fa-brain"></i> TensorFlow</div>
-    <div class="skill"><i class="fa-solid fa-robot"></i> Scikit-learn</div>
-  </div>
-</section>
-
-<section id="certifications" class="section fade-up">
-  <h2><i class="fa-solid fa-certificate"></i> Certifications</h2>
-  <div class="grid">
-    <div class="card">
-      <a href="#" class="link-icon"><i class="fa-solid fa-link"></i></a>
-      <h3>AI Expert</h3>
-      <p>IABAC | Mar 2026</p>
-    </div>
-    <div class="card">
-      <a href="#" class="link-icon"><i class="fa-solid fa-link"></i></a>
-      <h3>AI Engineer</h3>
-      <p>NASSCOM | Mar 2026</p>
+<section id="skills" class="section" style="padding: 50px 0;">
+  <h2 class="section-title" style="display:none;">Skills</h2>
+  <div class="skill-marquee">
+    <div class="skill-track">
+      <div class="skill"><i class="fa-brands fa-python"></i><span>Python</span></div>
+      <div class="skill"><i class="fa-solid fa-database"></i><span>SQL</span></div>
+      <div class="skill"><i class="fa-solid fa-robot"></i><span>Scikit-learn</span></div>
+      <div class="skill"><i class="fa-solid fa-brain"></i><span>TensorFlow</span></div>
+      <div class="skill"><i class="fa-solid fa-chart-line"></i><span>Pandas</span></div>
+      <div class="skill"><i class="fa-solid fa-chart-pie"></i><span>Matplotlib</span></div>
+      <div class="skill"><i class="fa-solid fa-language"></i><span>NLP</span></div>
+      <div class="skill"><i class="fa-brands fa-github"></i><span>Git/GitHub</span></div>
+      <div class="skill"><i class="fa-solid fa-code"></i><span>REST APIs</span></div>
+      
+      <div class="skill"><i class="fa-brands fa-python"></i><span>Python</span></div>
+      <div class="skill"><i class="fa-solid fa-database"></i><span>SQL</span></div>
+      <div class="skill"><i class="fa-solid fa-robot"></i><span>Scikit-learn</span></div>
+      <div class="skill"><i class="fa-solid fa-brain"></i><span>TensorFlow</span></div>
     </div>
   </div>
 </section>
 
-<section id="contact" class="section fade-up">
-  <h2>Contact</h2>
+<section id="certificates" class="section">
+  <h2 class="section-title"><i class="fa-solid fa-certificate"></i> Certifications</h2>
+  <div class="card-grid">
+    
+    <div class="glass-panel item">
+      <h3>Artificial Intelligence Expert</h3>
+      <p class="role">IABAC</p>
+      <span>March 2026</span>
+      <div class="item-links">
+        <a href="PASTE AI EXPERT LINK HERE" target="_blank"><i class="fa-solid fa-link"></i> View Certificate</a>
+      </div>
+    </div>
+
+    <div class="glass-panel item">
+      <h3>AI Engineer (AIE)</h3>
+      <p class="role">NASSCOM</p>
+      <span>March 2026</span>
+      <div class="item-links">
+        <a href="PASTE AI ENGINEER LINK HERE" target="_blank"><i class="fa-solid fa-link"></i> View Certificate</a>
+      </div>
+    </div>
+
+    <div class="glass-panel item">
+      <h3>Data Science Foundation</h3>
+      <p class="role">IABAC</p>
+      <span>March 2026</span>
+      <div class="item-links">
+        <a href="PASTE DATA SCIENCE FOUNDATION LINK HERE" target="_blank"><i class="fa-solid fa-link"></i> View Certificate</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <h2 class="section-title"><i class="fa-solid fa-envelope"></i> Contact Me</h2>
   <div class="contact-center">
     <a href="mailto:balaganeshgolla70@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-    <a href="https://github.com/Balaganesh1122" target="_blank"><i class="fa-brands fa-github"></i></a>
-    <a href="https://www.linkedin.com/in/bala-ganesh-golla-495a95279/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="tel:+916301680774"><i class="fa-solid fa-phone"></i></a>
+    <a href="PASTE GITHUB PROFILE LINK HERE" target="_blank"><i class="fa-brands fa-github"></i></a>
+    <a href="PASTE LINKEDIN PROFILE LINK HERE" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
   </div>
 </section>
 
-<footer>© 2026 Golla Bala Ganesh</footer>
-
-<script>
-const obs = new IntersectionObserver(entries=>{
-  entries.forEach(e=>e.isIntersecting && e.target.classList.add("show"));
-});
-document.querySelectorAll(".fade-up").forEach(el=>obs.observe(el));
-</script>
+<footer>© 2026 Golla Bala Ganesh. All Rights Reserved.</footer>
 
 </body>
 </html>
