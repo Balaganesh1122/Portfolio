@@ -1,93 +1,24 @@
-# 🚀 Personal Portfolio Website
+# Bala Ganesh Golla — AI/ML Engineer Portfolio
 
-This is my **personal portfolio website**, built to showcase my skills, projects, education, and experience as a **Software / Full Stack Developer**.  
-The portfolio is fully responsive and deployed using **Vercel**.
+Personal portfolio website showcasing my AI/ML experience, selected projects, skills, education and contact information.
 
-🌐 **Live Website:**  
-👉 https://balaganeshportfolio.vercel.app/
+**Live website:** https://balaganeshportfolio.vercel.app/
 
----
+## Built with
+- HTML5
+- CSS3 (responsive layouts, gradients, motion and reduced-motion support)
+- Vanilla JavaScript
+- Font Awesome icons and Google Fonts
 
-## 📌 Features
+## Run locally
+1. Clone this repository.
+2. Open `index.html` in a browser, or use a local development server.
+3. Keep `profile.png` and `resume.pdf` in the project root so the profile image and resume link work.
 
-- 👨‍💻 About Me section
-- 🧠 Skills & Technologies
-- 💼 Experience & Education
-- 🗂️ Projects showcase
-- 📄 Resume download
-- 📱 Fully responsive design
-- ⚡ Fast performance with Vercel hosting
+## Deployment
+The site is deployed on Vercel and connected to this GitHub repository.
 
----
-
-## 🛠️ Tech Stack
-
-- **Frontend:** HTML, CSS, JavaScript  
-- **Framework / Library:** React (if applicable)  
-- **Styling:** CSS / Tailwind CSS  
-- **Deployment:** Vercel  
-- **Version Control:** Git & GitHub  
-
----
-
-## 📂 Project Structure
-
-```text
-portfolio/
-├── public/
-├── src/
-│   ├── components/
-│   ├── assets/
-│   └── App.jsx
-├── index.html
-├── package.json
-└── README.md
-
-
-
-
-🚀 Deployment
-
-This project is deployed on Vercel.
-
-Steps used for deployment:
-
-Push project code to GitHub
-
-Import repository into Vercel
-
-Configure build settings
-
-Deploy 🚀
-
-🧑‍💼 About Me
-
-I am a passionate developer with strong interest in:
-
-Full Stack Development
-
-Data Science & Machine Learning
-
-Backend Engineering
-
-Scalable Web Applications
-
-I enjoy building real-world projects and continuously improving my technical skills.
-
-📬 Contact
-
-🌐 Portfolio: https://balaganeshportfolio.vercel.app/
-
-💼 GitHub: https://github.com/Balaganesh1122
-
-⭐ Acknowledgements
-
-Thanks to:
-
-Open-source community
-
-Online developer resources
-
-Vercel for seamless deployment
-
-Just tell me 👍
+## Contact
+- Email: balaganeshgolla70@gmail.com
+- LinkedIn: https://www.linkedin.com/in/bala-ganesh-golla-495a95279/
+- GitHub: https://github.com/Balaganesh1122
