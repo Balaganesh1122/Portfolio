@@ -1,348 +1,133 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Golla Bala Ganesh | AI Engineering</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b14">
+  <meta name="description" content="Portfolio of Bala Ganesh Golla — AI/ML Engineer working with Python, machine learning, deep learning and intelligent applications.">
+  <meta property="og:title" content="Bala Ganesh Golla | AI/ML Engineer">
+  <meta property="og:description" content="Building practical AI and machine learning solutions with Python.">
+  <title>Bala Ganesh Golla | AI/ML Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-  <style>
-    /* -----------------------------------------------------------
-       1. GLOBAL RESET & BASE STYLES
-       Sets the foundation for a clean, full-screen portfolio.
-    ----------------------------------------------------------- */
-    * { margin: 0; padding: 0; box-spacing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #000; color: #fff; overflow-x: hidden; }
-
-    /* -----------------------------------------------------------
-       2. FULL-SCREEN BACKGROUND (matches photo exactly)
-       This places the sci-fi grid video behind everything.
-    ----------------------------------------------------------- */
-    .background-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; filter: brightness(0.7); }
-
-    /* Optional: Use this <img> tag if you don't have a background.mp4 video file */
-    /*.background-overlay { content: url('background-image.jpg'); position: fixed; ... (same styles) ... }*/
-
-    /* -----------------------------------------------------------
-       3. NAVIGATION BAR (Clean, photo style)
-    ----------------------------------------------------------- */
-    .navbar { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 15px 50px; background: rgba(0,0,0,0.5); backdrop-filter: blur(5px); z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-    .navbar .logo { color: #00FFCC; font-size: 24px; font-weight: bold; letter-spacing: 1px; }
-    .navbar ul { list-style: none; display: flex; gap: 20px; }
-    .navbar ul li a { text-decoration: none; color: #fff; font-size: 15px; transition: color 0.3s ease; font-weight: 500; }
-    .navbar ul li a:hover { color: #00FFCC; }
-
-    /* -----------------------------------------------------------
-       4. HERO SECTION (matches photo exactly)
-    ----------------------------------------------------------- */
-    .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; z-index: 10; }
-    
-    /* Profile Image: Borderless and Thin Green Ring */
-    .profile-img-container { position: relative; width: 150px; height: 150px; margin-bottom: 20px; }
-    .profile-img-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid #00FFCC; box-shadow: 0 0 10px rgba(0, 255, 204, 0.4); }
-
-    /* Typography */
-    .hero h1 { font-size: 3rem; font-weight: 700; margin-bottom: 5px; color: #fff; text-transform: none; }
-    .hero h3 { color: #00FFCC; font-size: 1.2rem; font-weight: 600; text-transform: none; margin-bottom: 15px; }
-    
-    /* Text Overlay & Buttons */
-    .hero .scrolling-text { max-width: 600px; color: rgba(255,255,255,0.8); margin-bottom: 25px; line-height: 1.6; }
-    .hero-buttons { display: flex; gap: 15px; margin-top: 15px; }
-
-    /* Button Styles (photo match) */
-    .btn { text-decoration: none; padding: 12px 25px; border-radius: 25px; font-size: 15px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s ease; }
-    .btn.primary { background: #00FFCC; color: #000; border: 2px solid #00FFCC; }
-    .btn.primary:hover { background: transparent; color: #00FFCC; box-shadow: 0 0 10px rgba(0, 255, 204, 0.3); }
-    .btn.outline { background: transparent; color: #fff; border: 2px solid #fff; }
-    .btn.outline:hover { background: #fff; color: #000; box-shadow: 0 0 10px rgba(255,255,255,0.3); }
-
-    /* -----------------------------------------------------------
-       5. MAIN SECTIONS & COMPONENTS (Refined layout)
-    ----------------------------------------------------------- */
-    .section { padding: 80px 10%; position: relative; z-index: 5; background: rgba(0,0,0,0.8); } /* Darker overlay for content readability */
-    .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 50px; color: #fff; font-weight: 700; }
-    .section-title i { color: #00FFCC; margin-right: 15px; }
-
-    /* Glass Effect (for content panels) */
-    .glass-panel { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 15px; padding: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); backdrop-filter: blur(5px); transition: all 0.3s ease; }
-    .glass-panel:hover { border-color: rgba(0, 255, 204, 0.3); }
-
-    /* GRID LAYOUTS (Education, Experience, Certificates) */
-    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-    .card-grid .item { display: flex; flex-direction: column; position: relative; }
-    .card-grid .item h3 { color: #fff; font-size: 1.2rem; margin-bottom: 5px; }
-    .card-grid .item .role { color: #00FFCC; font-weight: 600; margin-bottom: 5px; }
-    .card-grid .item span { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 10px; }
-    .card-grid .item ul { color: rgba(255,255,255,0.8); font-size: 0.95rem; line-height: 1.6; margin-left: 20px; flex-grow: 1; }
-    
-    /* LINK SECTIONS (for Experience and Certificates Cards) */
-    .item-links { margin-top: auto; padding-top: 15px; text-align: right; }
-    .item-links a { text-decoration: none; color: #00FFCC; font-size: 0.9rem; font-weight: 500; }
-    .item-links a:hover { text-decoration: underline; }
-
-    /* PROJECTS GRID (Unified, photo style) */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-    .project-card { display: flex; align-items: center; justify-content: space-between; }
-    .project-card h3 { color: #fff; font-size: 1.1rem; }
-    .project-card p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
-    .project-card .code-link { font-size: 1.5rem; color: #00FFCC; transition: all 0.3s ease; }
-    .project-card .code-link:hover { color: #fff; transform: scale(1.1); }
-
-    /* SKILLS MARQUEE */
-    .skill-marquee { width: 100%; overflow: hidden; padding: 20px 0; background: rgba(0,0,0,0.5); }
-    .skill-track { display: flex; gap: 40px; animation: scroll-marquee 20s linear infinite; width: max-content; }
-    .skill { display: flex; align-items: center; gap: 10px; color: #fff; font-size: 1.1rem; }
-    .skill i { color: #00FFCC; font-size: 1.4rem; }
-    
-    /* CONTACT SECTION (Unified) */
-    .contact-center { display: flex; justify-content: center; gap: 30px; font-size: 2rem; margin-top: 30px; }
-    .contact-center a { color: #fff; transition: color 0.3s ease; }
-    .contact-center a:hover { color: #00FFCC; }
-    
-    /* FOOTER */
-    footer { padding: 20px; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem; border-top: 1px solid rgba(255,255,255,0.1); }
-
-    /* Animation */
-    @keyframes scroll-marquee { 
-      0% { transform: translateX(0); } 
-      100% { transform: translateX(-50%); } 
-    }
-
-    /* Simple Fade-In on Page Load */
-    .hero { animation: fadeIn 1s ease-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<video autoplay muted loop playsinline class="background-overlay">
-  <source src="background.mp4" type="video/mp4">
-</video>
-
-<nav class="navbar">
-  <div class="logo">Portfolio</div>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#certificates">Certificates</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<section class="hero">
-  <div class="profile-img-container">
-    <img src="profile.png" alt="Golla Bala Ganesh">
-  </div>
-
-  <h1>Golla Bala Ganesh</h1>
-  <h3>Aspiring AI Engineering</h3>
-
-  <div class="scrolling-text">
-    Enthusiastic and detail-oriented AI/ML fresher proficient in TensorFlow, Scikit-learn, NLP, and Deep Learning, with strong experience building real-world solutions through projects and internships.
-  </div>
-
-  <div class="hero-buttons">
-    <a href="#projects" class="btn primary">
-      <i class="fa-solid fa-code"></i> View Projects
-    </a>
-    <a href="resume.pdf" class="btn outline" target="_blank">
-      <i class="fa-solid fa-download"></i> Resume
-    </a>
-  </div>
-</section>
-
-<section id="about" class="section">
-  <h2 class="section-title"><i class="fa-solid fa-user-astronaut"></i> About Me</h2>
-  <div class="glass-panel">
-    <p style="text-align: center; max-width: 800px; margin: 0 auto; line-height: 1.8; color: rgba(255,255,255,0.9);">
-      Aspiring AI Engineering Professional based in Visakhapatnam, Andhra Pradesh. Specializing in Python, TensorFlow, and Scikit-learn, I have a passion for transforming data into predictive solutions. I have hands-on experience in regression, classification, and NLP, applied across diverse domains from concrete strength prediction to financial fraud detection. With strong problem-solving and collaboration skills, I am eager to apply machine learning to impactful, real-world solutions and grow within an innovative environment.
-    </p>
-  </div>
-</section>
-
-<section id="education" class="section">
-  <h2 class="section-title"><i class="fa-solid fa-graduation-cap"></i> Education</h2>
-  <div class="card-grid">
-    <div class="glass-panel item">
-      <h3>Vellore Institute of Technology</h3>
-      <p class="role">B.Tech – Computer Science & Engineering</p>
-      <span>2021 – 2025 | CGPA: 7.28</span>
-    </div>
-    <div class="glass-panel item">
-      <h3>Narayana Junior College</h3>
-      <p class="role">Intermediate Education</p>
-      <span>2019 – 2021 | 90.4%</span>
-    </div>
-    <div class="glass-panel item">
-      <h3>Dr. K.K.R’s Gowtham School</h3>
-      <p class="role">Secondary Education</p>
-      <span>2018 – 2019 | CGPA: 7.8</span>
-    </div>
-  </div>
-</section>
-
-<section id="experience" class="section">
-  <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Experience</h2>
-  <div class="card-grid">
-    <div class="glass-panel item">
-      <h3>Rubixe</h3>
-      <p class="role">Data Scientist Intern</p>
-      <span>Sep 2025 – Jan 2026</span>
-      <ul>
-        <li>Worked on Proof of Concept (POC) projects in the Data Science domain.</li>
-        <li>Applied machine learning and data analysis techniques to solve real-world problems.</li>
-        <li>Assisted in data preprocessing, model building, and result interpretation.</li>
-      </ul>
-      <div class="item-links">
-        <a href="PASTE RUBIXE LINK HERE" target="_blank"><i class="fa-solid fa-link"></i> View Confirmation</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header">
+    <nav class="nav-wrap" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Bala Ganesh home">BG<span>.</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false" aria-controls="navLinks"><i class="fa-solid fa-bars"></i></button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#education">Education</a><a href="#contact" class="nav-contact">Let's talk <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
       </div>
-    </div>
-    
-    <div class="glass-panel item">
-      <h3>Smart Bridge</h3>
-      <p class="role">Externship</p>
-      <span>Aug 2023 – Nov 2023</span>
-      <ul>
-        <li>Analyzed large datasets using Python to extract insights and identify patterns.</li>
-        <li>Built predictive models using Linear Regression and Decision Trees.</li>
-        <li>Applied feature engineering and data preprocessing to improve performance.</li>
-      </ul>
-      <div class="item-links">
-        <a href="PASTE SMART BRIDGE LINK HERE" target="_blank"><i class="fa-solid fa-link"></i> View Certificate</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero section-shell" id="home">
+      <div class="hero-copy reveal">
+        <div class="eyebrow"><span class="status-dot"></span> AI / MACHINE LEARNING ENGINEER</div>
+        <p class="hero-kicker">Hello, I'm</p>
+        <h1>Bala Ganesh<br><span>Golla.</span></h1>
+        <p class="hero-description">I build intelligent solutions with <strong>Python, Machine Learning and AI</strong> — turning data and ideas into practical applications.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#projects">Explore my work <i class="fa-solid fa-arrow-right"></i></a>
+          <a class="button button-secondary" href="resume.pdf" target="_blank" rel="noopener">View resume <i class="fa-solid fa-file-arrow-down"></i></a>
+        </div>
+        <div class="hero-socials" aria-label="Social links">
+          <a href="https://github.com/Balaganesh1122" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/bala-ganesh-golla-495a95279/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="mailto:balaganeshgolla70@gmail.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="projects" class="section">
-  <h2 class="section-title"><i class="fa-solid fa-code-branch"></i> Projects</h2>
-  <div class="projects-grid">
-    
-    <div class="glass-panel project-card item">
-      <div>
-        <h3>FIFA 20 Player Analysis</h3>
-        <p>Classification Model | 89% Accuracy</p>
+      <div class="hero-visual reveal">
+        <div class="visual-orbit orbit-a"></div><div class="visual-orbit orbit-b"></div>
+        <div class="profile-frame"><img src="profile.png" alt="Portrait of Bala Ganesh Golla"></div>
+        <div class="floating-chip chip-python"><i class="fa-brands fa-python"></i> Python</div>
+        <div class="floating-chip chip-ml"><i class="fa-solid fa-brain"></i> Machine Learning</div>
+        <div class="visual-caption"><span>BASED IN</span><strong>Hyderabad, India</strong></div>
       </div>
-      <a href="PASTE FIFA PROJECT LINK HERE" target="_blank" class="code-link">
-        <i class="fa-brands fa-github"></i>
-      </a>
-    </div>
+      <a class="scroll-cue" href="#about"><span></span> Scroll to explore</a>
+    </section>
 
-    <div class="glass-panel project-card item">
-      <div>
-        <h3>Credit Card Fraud Detection</h3>
-        <p>Deep Learning (ANN, LSTM) | 94% Accuracy</p>
+    <section class="section-shell section-block" id="about">
+      <div class="section-heading reveal"><p class="eyebrow">A LITTLE ABOUT ME</p><h2>Curious mind.<br><span>Practical builder.</span></h2></div>
+      <div class="about-layout">
+        <div class="about-copy glass-card reveal">
+          <p>I'm a Computer Science and Engineering graduate from <strong>Vellore Institute of Technology</strong> with hands-on experience in AI/ML development.</p>
+          <p>My work and projects have introduced me to machine learning workflows, predictive modelling, cybersecurity monitoring, anomaly detection and AI-driven automation. I enjoy understanding a problem, experimenting with data and building solutions that are useful beyond a notebook.</p>
+          <p>I'm currently looking for a full-time opportunity where I can contribute, learn from experienced engineers and grow as an AI/ML professional.</p>
+          <a class="text-link" href="mailto:balaganeshgolla70@gmail.com">Get in touch <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+        <div class="about-highlights reveal">
+          <div class="highlight-card"><span class="highlight-icon"><i class="fa-solid fa-graduation-cap"></i></span><div><strong>VIT, Vellore</strong><small>B.Tech · Computer Science & Engineering</small></div></div>
+          <div class="highlight-card"><span class="highlight-icon"><i class="fa-solid fa-microchip"></i></span><div><strong>AI/ML Development</strong><small>Hands-on project and internship experience</small></div></div>
+          <div class="highlight-card"><span class="highlight-icon"><i class="fa-solid fa-location-dot"></i></span><div><strong>Hyderabad, India</strong><small>Open to full-time opportunities</small></div></div>
+        </div>
       </div>
-      <a href="PASTE CREDIT CARD PROJECT LINK HERE" target="_blank" class="code-link">
-        <i class="fa-brands fa-github"></i>
-      </a>
-    </div>
+    </section>
 
-    <div class="glass-panel project-card item">
-      <div>
-        <h3>Portuguese Bank Marketing</h3>
-        <p>Random Forest | 91% Accuracy</p>
+    <section class="section-shell section-block" id="experience">
+      <div class="section-heading reveal"><p class="eyebrow">WHERE I'VE CONTRIBUTED</p><h2>Experience<span>.</span></h2></div>
+      <article class="experience-card glass-card reveal">
+        <div class="experience-top"><div><p class="eyebrow">AI / ML</p><h3>AI/ML Developer</h3><p class="company">PraNaga Private Limited</p></div><span class="date-pill">Mar 2026 — Oct 2026</span></div>
+        <ul class="detail-list">
+          <li>Contributed to AI/ML initiatives involving cybersecurity monitoring and intelligent automation.</li>
+          <li>Worked with Wazuh, Docker and Kali Linux environments while exploring AI-assisted security monitoring workflows.</li>
+          <li>Analysed security events and explored anomaly-detection approaches to support threat monitoring.</li>
+          <li>Collaborated with team members on project planning, technical documentation and implementation activities.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section-shell section-block" id="projects">
+      <div class="section-heading section-heading-row reveal"><div><p class="eyebrow">THINGS I'VE BUILT</p><h2>Selected projects<span>.</span></h2></div><a class="text-link" href="https://github.com/Balaganesh1122" target="_blank" rel="noopener">All GitHub repositories <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
+      <div class="project-grid">
+        <article class="project-card project-featured reveal">
+          <div class="project-visual fraud-visual"><div class="visual-grid"></div><span class="project-symbol"><i class="fa-solid fa-shield-halved"></i></span><span class="visual-tag">MACHINE LEARNING</span></div>
+          <div class="project-content"><p class="project-type">CLASSIFICATION · FINTECH</p><h3>Credit Card Fraud Detection</h3><p>Explored machine learning and deep learning approaches to identify potentially fraudulent transactions, including Logistic Regression, Random Forest, ANN and LSTM.</p><div class="tag-list"><span>Python</span><span>Scikit-learn</span><span>TensorFlow</span><span>Deep Learning</span></div><a class="project-link" href="https://github.com/Balaganesh1122/Credit-Card-Fraud-Detection" target="_blank" rel="noopener">View source code <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-visual bank-visual"><div class="visual-grid"></div><span class="project-symbol"><i class="fa-solid fa-chart-line"></i></span><span class="visual-tag">PREDICTIVE MODELLING</span></div>
+          <div class="project-content"><p class="project-type">CLASSIFICATION · MARKETING</p><h3>Portuguese Bank Marketing Prediction</h3><p>Built a predictive modelling workflow using data cleaning, preprocessing, exploratory analysis, feature engineering and Random Forest.</p><div class="tag-list"><span>Python</span><span>Pandas</span><span>Random Forest</span></div><a class="project-link" href="https://github.com/Balaganesh1122" target="_blank" rel="noopener">Explore GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
+        </article>
+        <article class="project-card reveal">
+          <div class="project-visual fifa-visual"><div class="visual-grid"></div><span class="project-symbol"><i class="fa-solid fa-futbol"></i></span><span class="visual-tag">DATA ANALYSIS</span></div>
+          <div class="project-content"><p class="project-type">ANALYSIS · CLASSIFICATION</p><h3>FIFA 20 Player Performance Analysis</h3><p>Analysed player attributes and explored player comparison and classification based on performance-related features.</p><div class="tag-list"><span>Python</span><span>Data Analysis</span><span>Machine Learning</span></div><a class="project-link" href="https://github.com/Balaganesh1122" target="_blank" rel="noopener">Explore GitHub <i class="fa-solid fa-arrow-up-right-from-square"></i></a></div>
+        </article>
       </div>
-      <a href="PASTE PORTUGUESE BANK PROJECT LINK HERE" target="_blank" class="code-link">
-        <i class="fa-brands fa-github"></i>
-      </a>
-    </div>
+      <p class="section-note">Project descriptions are concise summaries. Open the linked repositories for available implementation details.</p>
+    </section>
 
-    <div class="glass-panel project-card item">
-      <div>
-        <h3>Concrete Compressive Strength</h3>
-        <p>Regression | 90% R² Score</p>
+    <section class="section-shell section-block" id="skills">
+      <div class="section-heading reveal"><p class="eyebrow">MY TOOLKIT</p><h2>Skills & technologies<span>.</span></h2></div>
+      <div class="skills-grid">
+        <article class="skill-card glass-card reveal"><span class="skill-icon"><i class="fa-solid fa-code"></i></span><h3>Programming</h3><div class="tag-list"><span>Python</span><span>SQL</span><span>OOP</span><span>DSA</span></div></article>
+        <article class="skill-card glass-card reveal"><span class="skill-icon"><i class="fa-solid fa-brain"></i></span><h3>AI & Machine Learning</h3><div class="tag-list"><span>Machine Learning</span><span>Deep Learning</span><span>NLP</span><span>Generative AI</span><span>Scikit-learn</span><span>TensorFlow</span><span>Keras</span></div></article>
+        <article class="skill-card glass-card reveal"><span class="skill-icon"><i class="fa-solid fa-chart-simple"></i></span><h3>Data & Visualization</h3><div class="tag-list"><span>NumPy</span><span>Pandas</span><span>Matplotlib</span><span>Seaborn</span><span>Power BI</span><span>Tableau</span></div></article>
+        <article class="skill-card glass-card reveal"><span class="skill-icon"><i class="fa-solid fa-screwdriver-wrench"></i></span><h3>Tools & Platforms</h3><div class="tag-list"><span>Git</span><span>GitHub</span><span>Docker</span><span>Jupyter</span><span>Google Colab</span><span>REST APIs</span><span>Wazuh</span><span>Kali Linux</span></div></article>
       </div>
-      <a href="PASTE CONCRETE PROJECT LINK HERE" target="_blank" class="code-link">
-        <i class="fa-brands fa-github"></i>
-      </a>
-    </div>
+    </section>
 
-    <div class="glass-panel project-card item">
-      <div>
-        <h3>NBA Shot Selection</h3>
-        <p>Feature Engineering | 87% Accuracy</p>
+    <section class="section-shell section-block" id="education">
+      <div class="section-heading reveal"><p class="eyebrow">MY FOUNDATION</p><h2>Education & certifications<span>.</span></h2></div>
+      <div class="education-grid">
+        <article class="education-card glass-card reveal"><span class="education-year">2021 — 2025</span><h3>Vellore Institute of Technology</h3><p>B.Tech, Computer Science and Engineering</p><strong>CGPA: 7.28 / 10</strong></article>
+        <article class="education-card glass-card reveal"><span class="education-year">2019 — 2021</span><h3>Narayana Junior College</h3><p>Intermediate · MPC</p><strong>90.4%</strong></article>
+        <article class="education-card glass-card reveal"><span class="education-year">2018 — 2019</span><h3>Dr. K.K.R's Gowtham School</h3><p>Secondary School Education</p><strong>CGPA: 7.8</strong></article>
       </div>
-      <a href="PASTE NBA PROJECT LINK HERE" target="_blank" class="code-link">
-        <i class="fa-brands fa-github"></i>
-      </a>
-    </div>
-  </div>
-</section>
+      <div class="cert-list reveal"><div><i class="fa-solid fa-award"></i><span>Artificial Intelligence Expert <small> IABAC · March 2026</small></span></div><div><i class="fa-solid fa-award"></i><span>Artificial Intelligence Engineer (AIE) <small> NASSCOM · March 2026</small></span></div><div><i class="fa-solid fa-award"></i><span>Data Science Foundation <small> IABAC · March 2026</small></span></div></div>
+    </section>
 
-<section id="skills" class="section" style="padding: 50px 0;">
-  <h2 class="section-title" style="display:none;">Skills</h2>
-  <div class="skill-marquee">
-    <div class="skill-track">
-      <div class="skill"><i class="fa-brands fa-python"></i><span>Python</span></div>
-      <div class="skill"><i class="fa-solid fa-database"></i><span>SQL</span></div>
-      <div class="skill"><i class="fa-solid fa-robot"></i><span>Scikit-learn</span></div>
-      <div class="skill"><i class="fa-solid fa-brain"></i><span>TensorFlow</span></div>
-      <div class="skill"><i class="fa-solid fa-chart-line"></i><span>Pandas</span></div>
-      <div class="skill"><i class="fa-solid fa-chart-pie"></i><span>Matplotlib</span></div>
-      <div class="skill"><i class="fa-solid fa-language"></i><span>NLP</span></div>
-      <div class="skill"><i class="fa-brands fa-github"></i><span>Git/GitHub</span></div>
-      <div class="skill"><i class="fa-solid fa-code"></i><span>REST APIs</span></div>
-      
-      <div class="skill"><i class="fa-brands fa-python"></i><span>Python</span></div>
-      <div class="skill"><i class="fa-solid fa-database"></i><span>SQL</span></div>
-      <div class="skill"><i class="fa-solid fa-robot"></i><span>Scikit-learn</span></div>
-      <div class="skill"><i class="fa-solid fa-brain"></i><span>TensorFlow</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="certificates" class="section">
-  <h2 class="section-title"><i class="fa-solid fa-certificate"></i> Certifications</h2>
-  <div class="card-grid">
-    
-    <div class="glass-panel item">
-      <h3>Artificial Intelligence Expert</h3>
-      <p class="role">IABAC</p>
-      <span>March 2026</span>
-      <div class="item-links">
-        <a href="PASTE AI EXPERT LINK HERE" target="_blank"><i class="fa-solid fa-link"></i> View Certificate</a>
-      </div>
-    </div>
-
-    <div class="glass-panel item">
-      <h3>AI Engineer (AIE)</h3>
-      <p class="role">NASSCOM</p>
-      <span>March 2026</span>
-      <div class="item-links">
-        <a href="PASTE AI ENGINEER LINK HERE" target="_blank"><i class="fa-solid fa-link"></i> View Certificate</a>
-      </div>
-    </div>
-
-    <div class="glass-panel item">
-      <h3>Data Science Foundation</h3>
-      <p class="role">IABAC</p>
-      <span>March 2026</span>
-      <div class="item-links">
-        <a href="PASTE DATA SCIENCE FOUNDATION LINK HERE" target="_blank"><i class="fa-solid fa-link"></i> View Certificate</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="section">
-  <h2 class="section-title"><i class="fa-solid fa-envelope"></i> Contact Me</h2>
-  <div class="contact-center">
-    <a href="mailto:balaganeshgolla70@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-    <a href="tel:+916301680774"><i class="fa-solid fa-phone"></i></a>
-    <a href="PASTE GITHUB PROFILE LINK HERE" target="_blank"><i class="fa-brands fa-github"></i></a>
-    <a href="PASTE LINKEDIN PROFILE LINK HERE" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-  </div>
-</section>
-
-<footer>© 2026 Golla Bala Ganesh. All Rights Reserved.</footer>
-
+    <section class="section-shell contact-section" id="contact">
+      <div class="contact-card reveal"><p class="eyebrow">HAVE AN OPPORTUNITY?</p><h2>Let's build something<br><span>meaningful together.</span></h2><p>I'm interested in full-time AI/ML opportunities and conversations about practical applications of AI.</p><a class="button button-primary" href="mailto:balaganeshgolla70@gmail.com">Say hello <i class="fa-solid fa-paper-plane"></i></a><div class="contact-details"><a href="mailto:balaganeshgolla70@gmail.com"><i class="fa-regular fa-envelope"></i> balaganeshgolla70@gmail.com</a><a href="tel:+916301680774"><i class="fa-solid fa-phone"></i> +91 63016 80774</a></div></div>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="brand" href="#home">BG<span>.</span></a><p>Designed & built by Bala Ganesh Golla · <span id="year"></span></p><div class="footer-socials"><a href="https://github.com/Balaganesh1122" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a><a href="https://www.linkedin.com/in/bala-ganesh-golla-495a95279/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></div></footer>
+  <script src="script.js"></script>
 </body>
 </html>
